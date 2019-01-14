@@ -115,61 +115,66 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
      */
     public void run() {
 
-        boolean rebondBalle = false;
+        boolean rebondBalleX = false;
 
         while (true) {
 
             /* Si la balle est en jeu (en mouvement) */
             if (balle_Service) {
-
-                /* Si celle-ci se déplace vers la gauche */
+                // Si celle-ci se déplace vers la gauche
                 if (deplacement_Gauche && balle_X > BALLE_X_MIN) {
 
-                    rebondBalle = (balle_Y >= raquetteOrdi_Y && balle_Y < (raquetteOrdi_Y + LONGUEUR_RAQUETTE)
+                    rebondBalleX = (balle_Y >= raquetteOrdi_Y && balle_Y < (raquetteOrdi_Y + LONGUEUR_RAQUETTE)
                             ? true : false);
 
-                    /* Mise à jour de la position de la balle sur la table */
+                    // Mise à jour de la position de la balle sur la table
                     balle_X = balle_X - INCR_BALLE_X;
-                    balle_Y = balle_Y + INCR_BALLE_Y*deplacement_Vertical;
+                    //balle_Y = balle_Y + INCR_BALLE_Y;
                     table.positionBalle(balle_X, balle_Y);
 
-                    /* Si la balle rebondi */
-                    if (balle_X <= RAQUETTE_ORDI_X && rebondBalle) {
+                    // Si la balle rebondi
+                    if (balle_X <= RAQUETTE_ORDI_X && rebondBalleX) {
 
                         deplacement_Gauche = false;
-                        /*if (balle_Y > table.hauteur_Table / 2) {
 
-                            deplacement_Vertical = -1;
-                        }
-                        else {
-
-                            deplacement_Vertical = 1;
-                        }
-                        INCR_BALLE_Y += 0.1;*/
                     }
                 }
 
+                if (balle_Y >= HAUT_TABLE )
+                {
 
-                /* Si celle-ci se déplace vers la droite */
+                    deplacement_Vertical = - 1;
+
+                }
+
+                if (balle_Y<=BAS_TABLE )
+                {
+
+                    deplacement_Vertical =   1;
+                }
+
+                table.positionBalle(balle_X, balle_Y);
+
+
+                // Si celle-ci se déplace vers la droite
                 if (!deplacement_Gauche && balle_X <= table.balle_x_max) {
 
-                    rebondBalle = (balle_Y >= raquetteJoueur_Y && balle_Y < (raquetteJoueur_Y + LONGUEUR_RAQUETTE)
+                    rebondBalleX = (balle_Y >= raquetteJoueur_Y && balle_Y < (raquetteJoueur_Y + LONGUEUR_RAQUETTE)
                             ? true : false);
 
-                    /* Mise à jour de la position de la balle sur la table */
+                    // Mise à jour de la position de la balle sur la table
                     balle_X = balle_X + INCR_BALLE_X;
-                    balle_Y = balle_Y + INCR_BALLE_Y*deplacement_Vertical;
+                    //balle_Y = balle_Y + INCR_BALLE_Y * deplacement_Vertical;
                     table.positionBalle(balle_X, balle_Y);
 
-                    /* Si la balle rebondi */
-                    if (balle_X >= table.place_Raquette && rebondBalle) {
+                    // Si la balle rebondi
+                    if (balle_X >= table.place_Raquette && rebondBalleX) {
 
                         deplacement_Gauche = true;
                         if (balle_Y > table.hauteur_Table / 2) {
 
                             deplacement_Vertical = -1;
-                        }
-                        else {
+                        } else {
 
                             deplacement_Vertical = 1;
                         }
