@@ -7,6 +7,7 @@ public class RaqSouris extends Raquette{
         super(x, y, vx, vy, sensx, sensy, largeur, hauteur);
     }
 
+    /*
     public void deplacement(Terrain jeu){
         Point p = jeu.getPositionSouris();
         if(p.y > this.y){
@@ -20,4 +21,5 @@ public class RaqSouris extends Raquette{
         }
         super.deplacement(jeu);
     }
+    */
 }
