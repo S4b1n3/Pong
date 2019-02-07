@@ -1,6 +1,4 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-//
+
 
 package jeu_pong;
 
@@ -8,6 +6,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,10 +31,19 @@ public class Table_PingPong extends JPanel implements Variables_Jeu {
     private float balle_Y = 110f;
     Dimension tailleTable = new Dimension(320, 220);
 
-    public Table_PingPong() {
-        Moteur_PingPong moteur = new Moteur_PingPong(this);
-        this.addMouseMotionListener(moteur);
-        this.addKeyListener(moteur);
+
+    public Table_PingPong(boolean duo) {
+        if(duo == true){
+            Moteur_Duo moteur2 = new Moteur_Duo(this);
+            this.addMouseMotionListener(moteur2);
+            this.addKeyListener(moteur2);
+        }
+        else {
+            Moteur_PingPong moteur = new Moteur_PingPong(this);
+            this.addMouseMotionListener(moteur);
+            this.addKeyListener(moteur);
+        }
+
     }
 
     public void ajoutInterface(Container conteneur) {

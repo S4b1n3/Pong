@@ -1,6 +1,7 @@
 package jeu_pong;
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
@@ -30,12 +31,13 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
     public JOptionPane infoQuit, infoTerrain;
 
     Moteur_PingPong moteur;
+    Moteur_Duo moteur2;
     Table_PingPong table;
 
     /**
      * Méthode pour initialiser tous les composants graphiques de l'interface
      */
-    private void initComposants(){
+    private void initComposants() throws IOException {
 
         barreMenu = new JMenuBar();
         fichier = new JMenu();
@@ -126,13 +128,10 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
 
         /* Ajout de la barre de menu à l'interface */
         this.setJMenuBar(barreMenu);
-
-
     }
 
 
-    public Main () {
-
+    public Main (boolean duo) throws IOException{
 
         initComposants();
 
@@ -164,9 +163,18 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
 
         });
 
-        table = new Table_PingPong();
-        table.ajoutInterface(this.getContentPane());
-        moteur = new Moteur_PingPong(table);
+
+
+        if(duo == false) {
+            table = new Table_PingPong(false);
+            table.ajoutInterface(this.getContentPane());
+            moteur = new Moteur_PingPong(table);
+        }
+        else if (duo == true) {
+            table = new Table_PingPong(true);
+            table.ajoutInterface(this.getContentPane());
+            moteur2 = new Moteur_Duo(table);
+        }
 
 
         this.pack();
@@ -404,8 +412,10 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        new Main();
+        Menu menu = new Menu();
+
+
     }
 }
