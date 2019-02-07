@@ -58,7 +58,7 @@ public class Table_PingPong extends JPanel implements Variables_Jeu {
         Graphisme.setColor(Color.black);
         Graphisme.fillRect(15, this.raquetteOrdi_Y, 5, 30);
         Graphisme.setColor(Color.orange);
-        Graphisme.fillOval(this.balle_X, (int)this.balle_Y, 10, 10);
+        Graphisme.fillOval(this.balle_X, (int)this.balle_Y, DIAM_BALLE, DIAM_BALLE);
         Graphisme.setColor(Color.WHITE);
         Graphisme.drawRect(10, 10, this.larg_Line, this.long_Ligne);
         Graphisme.drawLine(this.x1, 10, this.x2, this.ligne_Mediane);

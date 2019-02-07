@@ -4,8 +4,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
+import static java.lang.Math.abs;
 import static jeu_pong.Variables_Jeu.BALLE_Y_MIN;
 
 /**
@@ -13,6 +19,8 @@ import static jeu_pong.Variables_Jeu.BALLE_Y_MIN;
  * (balle, raquette, gestion souris...)
  */
 public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runnable, KeyListener{
+
+
 
     Table_PingPong table;
 
@@ -24,9 +32,9 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     public int score_Ordi = 0;
 
     private int balle_X;
-    private float balle_Y;
-    private int deplacement_Vertical;
-    float INCR_BALLE_Y = 0.7f;
+    private int balle_Y;
+    private int sens_X;
+    private int sens_Y;
 
     private volatile boolean balle_Service = false;
     private boolean deplacement_Gauche = true;
@@ -116,44 +124,54 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     public void run() {
 
         boolean rebondBalleX = false;
+        boolean rebondBalleY = false;
+
+        int angle = 0;
+
+
 
         while (true) {
 
             /* Si la balle est en jeu (en mouvement) */
             if (balle_Service) {
+
+                rebondBalleY = (balle_Y < 10 || balle_Y > table.hauteur_Table-10-DIAM_BALLE ? true : false);
+
                 // Si celle-ci se déplace vers la gauche
                 if (deplacement_Gauche && balle_X > BALLE_X_MIN) {
 
                     rebondBalleX = (balle_Y >= raquetteOrdi_Y && balle_Y < (raquetteOrdi_Y + LONGUEUR_RAQUETTE)
                             ? true : false);
-
-                    // Mise à jour de la position de la balle sur la table
-                    balle_X = balle_X - INCR_BALLE_X;
-                    //balle_Y = balle_Y + INCR_BALLE_Y;
+                    sens_X = -1;
+                    if(rebondBalleY){
+                        sens_Y = sens_Y * -1;
+                    }
+                    balle_X = balle_X + INCR_BALLE_X*sens_X;
+                    balle_Y = balle_Y + INCR_BALLE_Y*sens_Y;
                     table.positionBalle(balle_X, balle_Y);
 
                     // Si la balle rebondi
                     if (balle_X <= RAQUETTE_ORDI_X && rebondBalleX) {
 
+
+                        Thread playWave=new AePlayWave("pong.wav");
+                        playWave.start();
+
+
                         deplacement_Gauche = false;
+                        angle = balle_Y - (raquetteOrdi_Y + LONGUEUR_RAQUETTE/2);
+                        if (balle_Y > raquetteOrdi_Y + LONGUEUR_RAQUETTE / 2) {
+
+                            sens_Y = 1+abs(angle/5);
+                        }
+                        else {
+
+                            sens_Y = -1-abs(angle/5);
+                        }
 
                     }
                 }
 
-                if (balle_Y >= HAUT_TABLE )
-                {
-
-                    deplacement_Vertical = - 1;
-
-                }
-
-                if (balle_Y<=BAS_TABLE )
-                {
-
-                    deplacement_Vertical =   1;
-                }
-
-                table.positionBalle(balle_X, balle_Y);
 
 
                 // Si celle-ci se déplace vers la droite
@@ -161,26 +179,39 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
 
                     rebondBalleX = (balle_Y >= raquetteJoueur_Y && balle_Y < (raquetteJoueur_Y + LONGUEUR_RAQUETTE)
                             ? true : false);
+                    sens_X = 1;
+                    if(rebondBalleY){
+                        sens_Y = sens_Y * -1;
+                    }
 
                     // Mise à jour de la position de la balle sur la table
-                    balle_X = balle_X + INCR_BALLE_X;
-                    //balle_Y = balle_Y + INCR_BALLE_Y * deplacement_Vertical;
+                    balle_X = balle_X + INCR_BALLE_X*sens_X;
+                    balle_Y = balle_Y + INCR_BALLE_Y*sens_Y;
                     table.positionBalle(balle_X, balle_Y);
 
                     // Si la balle rebondi
                     if (balle_X >= table.place_Raquette && rebondBalleX) {
 
+
+
+                        Thread playWave=new AePlayWave("pong.wav");
+                        playWave.start();
+
                         deplacement_Gauche = true;
-                        if (balle_Y > table.hauteur_Table / 2) {
+                        angle = balle_Y - (raquetteJoueur_Y + LONGUEUR_RAQUETTE/2);
+                        if (balle_Y > raquetteJoueur_Y + LONGUEUR_RAQUETTE / 2) {
 
-                            deplacement_Vertical = -1;
-                        } else {
-
-                            deplacement_Vertical = 1;
+                            sens_Y = 1+abs(angle/5);
                         }
-                        INCR_BALLE_Y += 0.1;
+                        else {
+
+                            sens_Y = -1-abs(angle/5);
+                        }
+
                     }
                 }
+
+
 
 
                 /* Déplacement de la raquette de l'ordinateur pour taper la balle */
@@ -308,16 +339,17 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         balle_Service = true;
         balle_X = table.place_Raquette - 1;
         balle_Y = raquetteJoueur_Y;
+        Thread playWave=new AePlayWave("pong.wav");
+        playWave.start();
 
         if (balle_Y > table.hauteur_Table / 2) {
 
-            deplacement_Vertical = -1;
+            sens_Y = -1;
         }
         else {
 
-            deplacement_Vertical = -1;
+            sens_Y = 1;
         }
-        //balle_Y = balle_Y + INCR_BALLE_Y * deplacement_Vertical;
         table.positionBalle(balle_X, balle_Y);
         table.mouvementRaquetteJoueur(raquetteJoueur_Y);
     }

@@ -245,8 +245,8 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
                 table.place_Raquette = 220;
 
                 /* Zone de déplacement de la balle */
-                table.balle_x_max = table.larg_Table - INCR_BALLE_X;
-                table.balle_y_max = table.hauteur_Table - INCR_BALLE_X;
+                table.balle_x_max = table.larg_Table - INCR_BALLE_Y;
+                table.balle_y_max = table.hauteur_Table - INCR_BALLE_Y;
 
 
                 /* Redimensionnement de la fenêtre */
@@ -367,8 +367,8 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
                 table.place_Raquette = 520;
 
                 /* Zone de déplacement de la balle */
-                table.balle_x_max = table.larg_Table - INCR_BALLE_X;
-                table.balle_y_max = table.hauteur_Table - INCR_BALLE_X;
+                table.balle_x_max = table.larg_Table - INCR_BALLE_Y;
+                table.balle_y_max = table.hauteur_Table - INCR_BALLE_Y;
 
 
                 /* Redimensionnement de la fenêtre */
@@ -407,6 +407,7 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
     public static void main(String[] args) {
 
         new Main();
+
 
     }
 
