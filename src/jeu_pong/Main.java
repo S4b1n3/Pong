@@ -215,7 +215,7 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
         /* Balle lente */
         if (e.getSource() == nivB3) {
 
-            table.vitesse_JEU = 18;
+            table.vitesse_JEU = 20;
         }
 
 
@@ -407,12 +407,5 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
     public static void main(String[] args) {
 
         new Main();
-
-
     }
-
-
-
-
-
 }

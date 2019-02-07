@@ -12,6 +12,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 import static java.lang.Math.abs;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import static jeu_pong.Variables_Jeu.BALLE_Y_MIN;
 
 /**
@@ -40,6 +41,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     private boolean deplacement_Gauche = true;
 
     private JOptionPane infoQuit;
+    private JOptionPane rejouer;
 
 
 
@@ -331,6 +333,19 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         }
     }
 
+    public void rejouer(){
+        //Demande à l'utilisateur si il veut commencer une nouvelle partie
+        rejouer = new JOptionPane();
+        @SuppressWarnings("static-access")
+        int choix = rejouer.showConfirmDialog(null, "Voulez vous rejouer ?", "Rejouer", JOptionPane.YES_NO_OPTION);
+        if(choix == JOptionPane.YES_OPTION){
+            nouvellePartie();
+        }
+        else if (choix == JOptionPane.NO_OPTION){
+            System.exit(0);
+        }
+    }
+
     /**
      * Méthode permettant au joueur de servir en 1 er dans le jeu
      */
@@ -362,15 +377,17 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
 
         balle_Service = false;
 
-        /* si l'ordinateur atteint le score de 21 points */
+        /* si l'ordinateur atteint le score de 11 points */
         if (score_Ordi == SCORE_GAGNANT) {
 
-            table.messagesJeu("Victoire de l'ordinateur " + score_Ordi + ":" + score_Joueur);
+            table.messagesJeu("Vous avez perdu " + score_Ordi + ":" + score_Joueur + " !");
+            rejouer();
         }
-        /* si c'est le joueur qui atteint le score de 21 points */
+        /* si c'est le joueur qui atteint le score de 11 points */
         else if (score_Joueur == SCORE_GAGNANT) {
 
-            table.messagesJeu("Vous avez gagné " + score_Joueur + ":" + score_Ordi);
+            table.messagesJeu("Vous avez gagné " + score_Joueur + ":" + score_Ordi+" !");
+            rejouer();
         }
         /* sinon affichage classique des scores */
         else {

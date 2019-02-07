@@ -25,6 +25,6 @@ public interface Variables_Jeu {
     int DIAM_BALLE = 10;
     int BALLE_Y_DEPART = 110;
     int BALLE_X_DEPART = 160;
-    int SCORE_GAGNANT = 21;
+    int SCORE_GAGNANT = 11;
     int RALENTIE_JEU = 10;
 }
