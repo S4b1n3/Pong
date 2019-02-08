@@ -7,9 +7,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Table_PingPong extends JPanel implements Variables_Jeu {
     public JLabel label;
@@ -97,4 +95,6 @@ public class Table_PingPong extends JPanel implements Variables_Jeu {
         this.balle_Y = y;
         this.repaint();
     }
+
+
 }

@@ -57,13 +57,19 @@ public class Menu extends JFrame implements ActionListener{
         label.setBounds(10, 10, 500, 100);
         panel.add(label);
 
-        bouton = new JButton("1 Joueur");
-        bouton.setBounds(50, 200, 150, 50);
+        bouton = new JButton(new ImageIcon("raquette1.png"));
+        bouton.setBounds(50, 300, 150, 50);
+        bouton.setBorderPainted(false);
+        bouton.setContentAreaFilled(false);
+        bouton.setFocusPainted(false);
         panel.add(bouton);
         bouton.addActionListener(this);
 
-        bouton2 = new JButton("2 Joueurs");
-        bouton2.setBounds(300, 200, 150, 50);
+        bouton2 = new JButton(new ImageIcon("raquette2.png"));
+        bouton2.setBounds(300, 300, 150, 50);
+        bouton2.setBorderPainted(false);
+        bouton2.setContentAreaFilled(false);
+        bouton2.setFocusPainted(false);
         panel.add(bouton2);
         bouton2.addActionListener(this);
 
