@@ -42,6 +42,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
 
     private JOptionPane infoQuit;
     private JOptionPane rejouer;
+    private JOptionPane infoNew;
 
 
 
@@ -311,11 +312,19 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
      */
     public void nouvellePartie() {
 
-        score_Joueur = 0;
-        score_Ordi = 0;
+        infoNew = new JOptionPane();
+        @SuppressWarnings("static-access")
+        int choix = infoNew.showConfirmDialog(null, "Voulez-vous vraiment recommencer une nouvelle partie ? \n Cela mettra automatiquement fin à la partie en cours", "Confirmation", JOptionPane.YES_NO_OPTION);
 
-        table.messagesJeu("Scores - Ordinateur : 0  " + " Joueur : 0");
-        serviceJeu();
+
+        if (choix == JOptionPane.YES_OPTION) {
+
+            score_Joueur = 0;
+            score_Ordi = 0;
+
+            table.messagesJeu("Scores - Ordinateur : 0  " + " Joueur : 0");
+            serviceJeu();
+        }
 
     }
 

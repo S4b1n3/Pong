@@ -33,6 +33,7 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
     Moteur_PingPong moteur;
     Moteur_Duo moteur2;
     Table_PingPong table;
+    int test;
 
     /**
      * Méthode pour initialiser tous les composants graphiques de l'interface
@@ -169,11 +170,13 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
             table = new Table_PingPong(false);
             table.ajoutInterface(this.getContentPane());
             moteur = new Moteur_PingPong(table);
+            test = 1;
         }
         else if (duo == true) {
             table = new Table_PingPong(true);
             table.ajoutInterface(this.getContentPane());
             moteur2 = new Moteur_Duo(table);
+            test = 2;
         }
 
 
@@ -194,14 +197,23 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == nouvellePartie) {
-
-            moteur.nouvellePartie();
+            if(test == 1){
+                moteur.nouvellePartie();
+            }
+            else if (test == 2){
+                moteur2.nouvellePartie();
+            }
         }
 
 
         if (e.getSource() == quitter) {
 
-            moteur.finJeu();
+            if(test == 1){
+                moteur.finJeu();
+            }
+            else if (test == 2){
+                moteur2.finJeu();
+            }
 
         }
 

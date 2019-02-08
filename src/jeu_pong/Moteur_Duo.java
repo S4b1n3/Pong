@@ -293,7 +293,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
 
         infoNew = new JOptionPane();
         @SuppressWarnings("static-access")
-        int choix = infoNew.showConfirmDialog(null, "Voulez-vous vraiment recommencer une nouvelle partie ? \n Cela mettra automatique fin à la partie en cours", "Confirmation", JOptionPane.YES_NO_OPTION);
+        int choix = infoNew.showConfirmDialog(null, "Voulez-vous vraiment recommencer une nouvelle partie ? \n Cela mettra automatiquement fin à la partie en cours", "Confirmation", JOptionPane.YES_NO_OPTION);
 
 
         if (choix == JOptionPane.YES_OPTION) {
