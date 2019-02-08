@@ -221,14 +221,14 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
                     if (balle_X > table.balle_x_max) {
 
                         score_Ordi++;
-                        score_Joueur++;
                         Thread playWave=new AePlayWave("applauses.wav");
+                        playWave.start();
                         affichageScore();
                     }
                     else if (balle_X < BALLE_X_MIN) {
 
                         score_Joueur++;
-                        Thread playWave=new AePlayWave("applauses.wav");
+                        Thread playWave=new AePlayWave("applauses2.wav");
                         playWave.start();
                         affichageScore();
                     }
