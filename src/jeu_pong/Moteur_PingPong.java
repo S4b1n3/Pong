@@ -245,6 +245,8 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
                     else if (balle_X < BALLE_X_MIN) {
 
                         score_Joueur++;
+                        Thread playWave=new AePlayWave("applauses.wav");
+                        playWave.start();
                         affichageScore();
                     }
                 }

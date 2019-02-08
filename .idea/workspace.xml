@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34e6c239-30fb-45a2-96a6-0a0c04cda9ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/jeu_pong/Ecouteur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jeu_pong/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Moteur_PingPong.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Moteur_PingPong.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Table_PingPong.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Table_PingPong.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu_pong/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu_pong/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jeu_pong/Variables_Jeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu_pong/Variables_Jeu.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,36 +19,33 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3098">
-              <caret line="223" column="17" lean-forward="true" selection-start-line="223" selection-start-column="17" selection-end-line="223" selection-end-column="17" />
+            <state relative-caret-position="439">
+              <caret line="246" column="24" selection-start-line="246" selection-start-column="24" selection-end-line="247" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9467#9501#1" expanded="true" />
-                <element signature="e#9978#10012#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="271" lean-forward="true" selection-start-line="271" selection-end-line="271" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#9530#9564#1" expanded="true" />
-                <element signature="e#9952#9986#1" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="224" column="72" selection-start-line="224" selection-start-column="72" selection-end-line="224" selection-end-column="72" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#8494#8528#1" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="88" column="16" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="37" />
+            <state relative-caret-position="507">
+              <caret line="92" column="1" lean-forward="true" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,7 +60,9 @@
               <caret line="41" column="63" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1649#1650#0" expanded="true" />
                 <element signature="e#1688#1689#0" expanded="true" />
+                <element signature="e#2498#2499#0" expanded="true" />
                 <element signature="e#2542#2543#0" expanded="true" />
               </folding>
             </state>
@@ -79,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Variables_Jeu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+            <state relative-caret-position="272">
+              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -88,7 +81,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
+            <state relative-caret-position="402">
               <caret line="416" column="31" selection-start-line="416" selection-start-column="31" selection-end-line="416" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -131,15 +124,15 @@
         <option value="$PROJECT_DIR$/src/pongcours/Test.java" />
         <option value="$PROJECT_DIR$/src/pongcours/Fenetre.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/AePlayWave.java" />
-        <option value="$PROJECT_DIR$/src/jeu_pong/Variables_Jeu.java" />
-        <option value="$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Test.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Actions.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Ecouteur.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Main.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Menu.java" />
+        <option value="$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java" />
+        <option value="$PROJECT_DIR$/src/jeu_pong/Variables_Jeu.java" />
       </list>
     </option>
   </component>
@@ -159,8 +152,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,16 +180,18 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549576699781" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549636596109" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="RunDashboard">
@@ -245,7 +238,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.054462936" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20196672" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -254,7 +247,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17357911" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17357911" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -345,35 +338,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Variables_Jeu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3098">
-          <caret line="223" column="17" lean-forward="true" selection-start-line="223" selection-start-column="17" selection-end-line="223" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#9467#9501#1" expanded="true" />
-            <element signature="e#9978#10012#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Test.java" />
     <entry file="file://$PROJECT_DIR$/src/pongcours/Fenetre.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
@@ -394,14 +359,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Ecouteur.java">
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Ecouteur.java" />
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        <state relative-caret-position="439">
+          <caret line="246" column="24" selection-start-line="246" selection-start-column="24" selection-end-line="247" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#168#169#0" expanded="true" />
-            <element signature="e#189#190#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="224" column="72" selection-start-line="224" selection-start-column="72" selection-end-line="224" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8494#8528#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Variables_Jeu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="416" column="31" selection-start-line="416" selection-start-column="31" selection-end-line="416" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -412,40 +404,20 @@
           <caret line="41" column="63" selection-start-line="41" selection-start-column="63" selection-end-line="41" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1649#1650#0" expanded="true" />
             <element signature="e#1688#1689#0" expanded="true" />
+            <element signature="e#2498#2499#0" expanded="true" />
             <element signature="e#2542#2543#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="416" column="31" selection-start-line="416" selection-start-column="31" selection-end-line="416" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/jeu_pong/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="88" column="16" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="37" />
+        <state relative-caret-position="507">
+          <caret line="92" column="1" lean-forward="true" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="271" lean-forward="true" selection-start-line="271" selection-end-line="271" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#9530#9564#1" expanded="true" />
-            <element signature="e#9952#9986#1" expanded="true" />
           </folding>
         </state>
       </provider>

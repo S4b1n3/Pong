@@ -42,6 +42,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
 
     private JOptionPane infoQuit;
     private JOptionPane rejouer;
+    private JOptionPane infoNew;
 
 
 
@@ -220,11 +221,15 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
                     if (balle_X > table.balle_x_max) {
 
                         score_Ordi++;
+                        score_Joueur++;
+                        Thread playWave=new AePlayWave("applauses.wav");
                         affichageScore();
                     }
                     else if (balle_X < BALLE_X_MIN) {
 
                         score_Joueur++;
+                        Thread playWave=new AePlayWave("applauses.wav");
+                        playWave.start();
                         affichageScore();
                     }
                 }
@@ -286,11 +291,19 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
      */
     public void nouvellePartie() {
 
-        score_Joueur = 0;
-        score_Ordi = 0;
+        infoNew = new JOptionPane();
+        @SuppressWarnings("static-access")
+        int choix = infoNew.showConfirmDialog(null, "Voulez-vous vraiment recommencer une nouvelle partie ? \n Cela mettra automatique fin à la partie en cours", "Confirmation", JOptionPane.YES_NO_OPTION);
 
-        table.messagesJeu("Scores - Ordinateur : 0  " + " Joueur : 0");
-        serviceJeu();
+
+        if (choix == JOptionPane.YES_OPTION) {
+
+            score_Joueur = 0;
+            score_Ordi = 0;
+
+            table.messagesJeu("Scores - Joueur 1 : 0  " + " Joueur 2 : 0");
+            serviceJeu();
+        }
 
     }
 
@@ -359,19 +372,19 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
         /* si l'ordinateur atteint le score de 11 points */
         if (score_Ordi == SCORE_GAGNANT) {
 
-            table.messagesJeu("Vous avez perdu " + score_Ordi + ":" + score_Joueur + " !");
+            table.messagesJeu("Joueur 1 a gagné " + score_Ordi + ":" + score_Joueur + " !");
             rejouer();
         }
         /* si c'est le joueur qui atteint le score de 11 points */
         else if (score_Joueur == SCORE_GAGNANT) {
 
-            table.messagesJeu("Vous avez gagné " + score_Joueur + ":" + score_Ordi+" !");
+            table.messagesJeu("Joueur 2 a gagné " + score_Joueur + ":" + score_Ordi+" !");
             rejouer();
         }
         /* sinon affichage classique des scores */
         else {
 
-            table.messagesJeu("Ordinateur : " + score_Ordi + " Joueur : " + score_Joueur);
+            table.messagesJeu("Joueur 1 : " + score_Ordi + " Joueur 2 : " + score_Joueur);
 
         }
     }
