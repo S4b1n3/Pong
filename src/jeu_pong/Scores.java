@@ -14,7 +14,7 @@ public class Scores extends  JFrame implements ActionListener, Variables_Jeu {
     private JButton bouton2;
 
     private int y = 200;
-    private String score;
+    private String score = "Résultats récents";
 
     ArrayList<String> scores = new ArrayList();
 
