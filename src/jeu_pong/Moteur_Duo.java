@@ -375,7 +375,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
 
         balle_Service = true;
         if(service == true) {
-            balle_X = RAQUETTE_X-DIAM_BALLE;
+            balle_X = table.place_Raquette-DIAM_BALLE;
             balle_Y = raquetteJoueur_Y;
         }
         else {

@@ -24,9 +24,9 @@ public class Table_PingPong extends JPanel implements Variables_Jeu {
     public float balle_y_max = hauteur_Table-DIAM_BALLE/2;
     public int vitesse_JEU = 10;
     public int raquetteOrdi_Y = 100;
-    private int raquetteJoueur_Y = 100;
-    private int balle_X = larg_Line/2 + DIAM_BALLE/2;
-    private int balle_Y = long_Ligne/2 + DIAM_BALLE/2;
+    public int raquetteJoueur_Y = 100;
+    public int balle_X = larg_Line/2 + DIAM_BALLE/2;
+    public int balle_Y = long_Ligne/2 + DIAM_BALLE/2;
     Dimension tailleTable = new Dimension(320, 220);
 
 

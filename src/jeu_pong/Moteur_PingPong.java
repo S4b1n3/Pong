@@ -323,7 +323,6 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
             score_Ordi = 0;
 
             table.messagesJeu("Scores - Ordinateur : 0  " + " Joueur : 0");
-            serviceJeu();
         }
 
     }
@@ -374,7 +373,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     private void serviceJeu() {
 
         balle_Service = true;
-        balle_X = table.place_Raquette - 1;
+        balle_X = table.place_Raquette - DIAM_BALLE;
         balle_Y = raquetteJoueur_Y;
         Thread playWave=new AePlayWave("pong.wav");
         playWave.start();

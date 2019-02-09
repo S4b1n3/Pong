@@ -87,22 +87,22 @@ public class Scores extends  JFrame implements ActionListener, Variables_Jeu {
 
         JTextArea area = new JTextArea();
         area.setBounds(50, 130, 450, 300);
-        area.setForeground(Color.CYAN);
+        area.setForeground(Color.orange);
         area.setBackground(Color.black);
         area.setText(score);
         panel.add(area);
 
 
-        bouton = new JButton("Retour Menu");
-        bouton.setBounds(50, 480, 150, 50);
+        bouton = new JButton(new ImageIcon("balle.png"));
+        bouton.setBounds(50, 450, 100, 100);
         bouton.setBorderPainted(false);
         bouton.setContentAreaFilled(false);
         bouton.setFocusPainted(false);
         panel.add(bouton);
         bouton.addActionListener(this);
 
-        bouton2 = new JButton("Quitter");
-        bouton2.setBounds(300, 480, 150, 50);
+        bouton2 = new JButton(new ImageIcon("balle2.png"));
+        bouton2.setBounds(370, 450, 100, 100);
         bouton2.setBorderPainted(false);
         bouton2.setContentAreaFilled(false);
         bouton2.setFocusPainted(false);

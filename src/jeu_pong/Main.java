@@ -265,8 +265,11 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
                 table.place_Raquette = 220;
 
                 /* Zone de déplacement de la balle */
-                table.balle_x_max = table.larg_Table - INCR_BALLE_Y;
-                table.balle_y_max = table.hauteur_Table - INCR_BALLE_Y;
+                table.balle_x_max = table.larg_Table - DIAM_BALLE;
+                table.balle_y_max = table.hauteur_Table - DIAM_BALLE;
+
+                table.balle_X = table.larg_Line/2 + DIAM_BALLE/2;
+                table.balle_Y = table.long_Ligne/2 + DIAM_BALLE/2;
 
 
                 /* Redimensionnement de la fenêtre */
@@ -328,6 +331,9 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
                 table.balle_x_max = BALLE_X_MAX;
                 table.balle_y_max = BALLE_Y_MAX;
 
+                table.balle_X = table.larg_Line/2 + DIAM_BALLE/2;
+                table.balle_Y = table.long_Ligne/2 + DIAM_BALLE/2;
+
 
 
                 /* Redimension de la fenêtre */
@@ -387,8 +393,11 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
                 table.place_Raquette = 520;
 
                 /* Zone de déplacement de la balle */
-                table.balle_x_max = table.larg_Table - INCR_BALLE_Y;
-                table.balle_y_max = table.hauteur_Table - INCR_BALLE_Y;
+                table.balle_x_max = table.larg_Table - DIAM_BALLE;
+                table.balle_y_max = table.hauteur_Table - DIAM_BALLE;
+
+                table.balle_X = table.larg_Line/2 + DIAM_BALLE/2;
+                table.balle_Y = table.long_Ligne/2 + DIAM_BALLE/2;
 
 
                 /* Redimensionnement de la fenêtre */
