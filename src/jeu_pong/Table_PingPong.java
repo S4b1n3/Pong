@@ -34,6 +34,7 @@ public class Table_PingPong extends JPanel implements Variables_Jeu {
         if(duo == true){
             Moteur_Duo moteur2 = new Moteur_Duo(this);
             this.addMouseMotionListener(moteur2);
+            this.addMouseListener(moteur2);
             this.addKeyListener(moteur2);
         }
         else {

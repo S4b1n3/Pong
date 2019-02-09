@@ -1,9 +1,8 @@
 package jeu_pong;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
+import java.awt.event.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -21,7 +20,7 @@ import static jeu_pong.Variables_Jeu.BALLE_Y_MIN;
  * Cette classe représente le moteur du jeu, toutes les actions et mouvements y sont gérés
  * (balle, raquette, gestion souris...)
  */
-public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable, KeyListener{
+public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable, KeyListener, MouseListener {
 
 
 
@@ -51,6 +50,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
     private String nomJ1;
     private String nomJ2;
 
+    private int serviceJ1 = 1;
 
 
     /**
@@ -71,21 +71,15 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
      * Méthode appelée lorsqu'un clic de souris à lieu sur l'interface de jeu
      * @param e l'évènement
      */
-    public void mousePressed(MouseEvent e) {
-
-        /* Récupération de la position du pointeur de la souris
-           pour y placer un rectangle */
-        //table.point.x = e.getX();
-        //table.point.y = e.getY();
-
-        /* actualisation de l'interface */
-        //table.repaint();
-
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     /* Ensemble de méthodes implémentées par l'interface MouseListener */
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+        if(e.getButton()==MouseEvent.BUTTON1){
+            if(serviceJ1 == 1)
+                serviceJeu(true);
+        }
+    }
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
@@ -144,6 +138,8 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
 
             /* Si la balle est en jeu (en mouvement) */
             if (balle_Service) {
+
+
 
                 rebondBalleY = (balle_Y < 10 || balle_Y > table.hauteur_Table-10-DIAM_BALLE ? true : false);
 
@@ -287,7 +283,10 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
         }
         else if ('s' == touche || 'S' == touche) {
 
-            serviceJeu();
+
+        if(serviceJ1 == -1)
+            serviceJeu(false);
+
         }
 
         int fleche = e.getKeyCode();
@@ -317,7 +316,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
             score_Ordi = 0;
 
             table.messagesJeu("Scores - Joueur 1 : 0  " + " Joueur 2 : 0");
-            serviceJeu();
+
         }
 
     }
@@ -371,11 +370,18 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
     /**
      * Méthode permettant au joueur de servir en 1 er dans le jeu
      */
-    private void serviceJeu() {
+
+    private void serviceJeu(boolean service) {
 
         balle_Service = true;
-        balle_X = table.place_Raquette - 1;
-        balle_Y = raquetteJoueur_Y;
+        if(service == true) {
+            balle_X = RAQUETTE_X;
+            balle_Y = raquetteJoueur_Y;
+        }
+        else {
+            balle_X = RAQUETTE_ORDI_X + LARGEUR_RAQUETTE;
+            balle_Y = raquetteOrdi_Y;
+        }
         Thread playWave=new AePlayWave("pong.wav");
         playWave.start();
 
@@ -388,7 +394,10 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
             sens_Y = 1;
         }
         table.positionBalle(balle_X, balle_Y);
-        table.mouvementRaquetteJoueur(raquetteJoueur_Y);
+        if(service == true)
+            table.mouvementRaquetteJoueur(raquetteJoueur_Y);
+        else
+            table.mouvementRaquetteOrdi(raquetteOrdi_Y);
     }
 
 
@@ -419,6 +428,9 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
         else {
 
             table.messagesJeu("Joueur 1 : " + score_Ordi + " Joueur 2 : " + score_Joueur);
+            if((score_Joueur+score_Ordi)%2 == 0) {
+                serviceJ1 *= -1;
+            }
 
         }
     }
