@@ -157,7 +157,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
                     table.positionBalle(balle_X, balle_Y);
 
                     // Si la balle rebondi
-                    if (balle_X <= RAQUETTE_ORDI_X && rebondBalleX) {
+                    if (balle_X <= RAQUETTE_ORDI_X+LARGEUR_RAQUETTE && rebondBalleX) {
 
 
                         Thread playWave=new AePlayWave("pong.wav");
@@ -196,7 +196,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
                     table.positionBalle(balle_X, balle_Y);
 
                     // Si la balle rebondi
-                    if (balle_X >= table.place_Raquette && rebondBalleX) {
+                    if (balle_X+DIAM_BALLE >= table.place_Raquette && rebondBalleX) {
 
 
 
@@ -290,9 +290,9 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
         }
 
         int fleche = e.getKeyCode();
-        if (fleche == KeyEvent.VK_UP){
+        if (fleche == KeyEvent.VK_UP && raquetteOrdi_Y > HAUT_TABLE){
             raquetteOrdi_Y -= INCR_RAQUETTE;
-        } else if (fleche == KeyEvent.VK_DOWN){
+        } else if (fleche == KeyEvent.VK_DOWN && raquetteOrdi_Y < table.bas_Table){
             raquetteOrdi_Y += INCR_RAQUETTE;
         }
         table.mouvementRaquetteOrdi(raquetteOrdi_Y);
@@ -375,7 +375,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
 
         balle_Service = true;
         if(service == true) {
-            balle_X = RAQUETTE_X;
+            balle_X = RAQUETTE_X-DIAM_BALLE;
             balle_Y = raquetteJoueur_Y;
         }
         else {

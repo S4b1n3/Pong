@@ -69,18 +69,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
      * Méthode appelée lorsqu'un clic de souris à lieu sur l'interface de jeu
      * @param e l'évènement
      */
-    public void mousePressed(MouseEvent e) {
-
-        /* Récupération de la position du pointeur de la souris
-           pour y placer un rectangle */
-        //table.point.x = e.getX();
-        //table.point.y = e.getY();
-
-        /* actualisation de l'interface */
-        //table.repaint();
-
-
-    }
+    public void mousePressed(MouseEvent e) {}
 
     /* Ensemble de méthodes implémentées par l'interface MouseListener */
     public void mouseClicked(MouseEvent e) {}
@@ -121,8 +110,6 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
            (à la classe Table_PingPong plus précisement) */
         table.mouvementRaquetteJoueur(raquetteJoueur_Y);
 
-        /* actualisation de l'interface */
-        //table.repaint();
     }
 
 
@@ -143,13 +130,12 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
             /* Si la balle est en jeu (en mouvement) */
             if (balle_Service) {
 
-                rebondBalleY = (balle_Y < 10 || balle_Y > table.hauteur_Table-10-DIAM_BALLE ? true : false);
+                rebondBalleY = (balle_Y < DIAM_BALLE || balle_Y > table.long_Ligne ? true : false);
 
                 // Si celle-ci se déplace vers la gauche
                 if (deplacement_Gauche && balle_X > BALLE_X_MIN) {
 
-                    rebondBalleX = (balle_Y >= raquetteOrdi_Y && balle_Y < (raquetteOrdi_Y + LONGUEUR_RAQUETTE)
-                            ? true : false);
+                    rebondBalleX = (balle_Y >= raquetteOrdi_Y && balle_Y < (raquetteOrdi_Y + LONGUEUR_RAQUETTE) ? true : false);
                     sens_X = -1;
                     if(rebondBalleY){
                         sens_Y = sens_Y * -1;
@@ -159,7 +145,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
                     table.positionBalle(balle_X, balle_Y);
 
                     // Si la balle rebondi
-                    if (balle_X <= RAQUETTE_ORDI_X && rebondBalleX) {
+                    if (balle_X <= RAQUETTE_ORDI_X+LARGEUR_RAQUETTE && rebondBalleX) {
 
 
                         Thread playWave=new AePlayWave("pong.wav");
@@ -198,7 +184,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
                     table.positionBalle(balle_X, balle_Y);
 
                     // Si la balle rebondi
-                    if (balle_X >= table.place_Raquette && rebondBalleX) {
+                    if (balle_X+DIAM_BALLE >= table.place_Raquette && rebondBalleX) {
 
 
 
@@ -310,9 +296,9 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         }
 
         int fleche = e.getKeyCode();
-        if (fleche == KeyEvent.VK_UP){
+        if (fleche == KeyEvent.VK_UP && raquetteJoueur_Y > HAUT_TABLE){
             raquetteJoueur_Y -= INCR_RAQUETTE;
-        } else if (fleche == KeyEvent.VK_DOWN){
+        } else if (fleche == KeyEvent.VK_DOWN && raquetteJoueur_Y < table.bas_Table){
             raquetteJoueur_Y += INCR_RAQUETTE;
         }
         table.mouvementRaquetteJoueur(
