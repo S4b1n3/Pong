@@ -40,7 +40,6 @@ public class Table_PingPong extends JPanel implements Variables_Jeu {
         else {
             Moteur_PingPong moteur = new Moteur_PingPong(this);
             this.addMouseMotionListener(moteur);
-            this.addMouseListener(moteur);
             this.addKeyListener(moteur);
         }
 

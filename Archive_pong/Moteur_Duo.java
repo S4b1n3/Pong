@@ -1,5 +1,7 @@
 package jeu_pong;
 
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
+
 import java.awt.event.*;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,7 +20,7 @@ import static jeu_pong.Variables_Jeu.BALLE_Y_MIN;
  * Cette classe représente le moteur du jeu, toutes les actions et mouvements y sont gérés
  * (balle, raquette, gestion souris...)
  */
-public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runnable, KeyListener, MouseListener {
+public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable, KeyListener, MouseListener {
 
 
 
@@ -42,17 +44,20 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     private JOptionPane infoQuit;
     private JOptionPane rejouer;
     private JOptionPane infoNew;
-    private JOptionPane infoNom;
+    private JOptionPane infoNom1;
+    private JOptionPane infoNom2;
 
-    private String nom;
+    private String nomJ1;
+    private String nomJ2;
 
+    private int serviceJ1 = 1;
 
 
     /**
      * Constructeur de la classe
      * @param tablePingPong référence de la table
      */
-    public Moteur_PingPong(Table_PingPong tablePingPong) {
+    public Moteur_Duo(Table_PingPong tablePingPong) {
 
         table = tablePingPong;
 
@@ -66,14 +71,15 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
      * Méthode appelée lorsqu'un clic de souris à lieu sur l'interface de jeu
      * @param e l'évènement
      */
-    public void mousePressed(MouseEvent e) {
-        if(e.getButton()==MouseEvent.BUTTON1){
-            serviceJeu();
-        }
-    }
+    public void mousePressed(MouseEvent e) {}
 
     /* Ensemble de méthodes implémentées par l'interface MouseListener */
-    public void mouseClicked(MouseEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+        if(e.getButton()==MouseEvent.BUTTON1){
+            if(serviceJ1 == 1)
+                serviceJeu(true);
+        }
+    }
     public void mouseReleased(MouseEvent e) {}
     public void mouseEntered(MouseEvent e) {}
     public void mouseExited(MouseEvent e) {}
@@ -111,13 +117,15 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
            (à la classe Table_PingPong plus précisement) */
         table.mouvementRaquetteJoueur(raquetteJoueur_Y);
 
+        /* actualisation de l'interface */
+        //table.repaint();
     }
 
 
     /**
      * Instructions réalisées par le thread créé
      */
-    public void run(){
+    public void run() {
 
         boolean rebondBalleX = false;
         boolean rebondBalleY = false;
@@ -131,12 +139,15 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
             /* Si la balle est en jeu (en mouvement) */
             if (balle_Service) {
 
-                rebondBalleY = (balle_Y < DIAM_BALLE || balle_Y > table.long_Ligne ? true : false);
+
+
+                rebondBalleY = (balle_Y < 10 || balle_Y > table.hauteur_Table-10-DIAM_BALLE ? true : false);
 
                 // Si celle-ci se déplace vers la gauche
                 if (deplacement_Gauche && balle_X > BALLE_X_MIN) {
 
-                    rebondBalleX = (balle_Y >= raquetteOrdi_Y && balle_Y < (raquetteOrdi_Y + LONGUEUR_RAQUETTE) ? true : false);
+                    rebondBalleX = (balle_Y >= raquetteOrdi_Y && balle_Y < (raquetteOrdi_Y + LONGUEUR_RAQUETTE)
+                            ? true : false);
                     sens_X = -1;
                     if(rebondBalleY){
                         sens_Y = sens_Y * -1;
@@ -207,34 +218,14 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
                 }
 
 
-
-
-                /* Déplacement de la raquette de l'ordinateur pour taper la balle */
-                if (raquetteOrdi_Y < balle_Y && raquetteOrdi_Y < table.bas_Table) {
-
-                    /* Déplacement vers le haut */
-                    raquetteOrdi_Y = raquetteOrdi_Y + INCR_RAQUETTE;
-                }
-                else if (raquetteOrdi_Y > HAUT_TABLE) {
-
-                    /* Déplacement vers le bas */
-                    raquetteOrdi_Y = raquetteOrdi_Y - INCR_RAQUETTE;
-                }
-
-                /* Mise à jour de la position de la raquette de l'ordinateur */
-                table.mouvementRaquetteOrdi(raquetteOrdi_Y);
-
-
-
-
                 /* mise à jour du score lors d'un service */
                 if (balleEnJeu()) {
 
                     if (balle_X > table.balle_x_max) {
 
-                        Thread playWave1=new AePlayWave("huee.wav");
-                        playWave1.start();
                         score_Ordi++;
+                        Thread playWave1=new AePlayWave("applauses.wav");
+                        playWave1.start();
                         try {
                             affichageScore();
                         } catch (IOException e) {
@@ -243,10 +234,9 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
                     }
                     else if (balle_X < BALLE_X_MIN) {
 
-
-                        Thread playWave2=new AePlayWave("applauses.wav");
-                        playWave2.start();
                         score_Joueur++;
+                        Thread playWave=new AePlayWave("applauses2.wav");
+                        playWave.start();
                         try {
                             affichageScore();
                         } catch (IOException e) {
@@ -293,17 +283,19 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         }
         else if ('s' == touche || 'S' == touche) {
 
-            serviceJeu();
+
+        if(serviceJ1 == -1)
+            serviceJeu(false);
+
         }
 
         int fleche = e.getKeyCode();
-        if (fleche == KeyEvent.VK_UP && raquetteJoueur_Y > HAUT_TABLE){
-            raquetteJoueur_Y -= INCR_RAQUETTE;
-        } else if (fleche == KeyEvent.VK_DOWN && raquetteJoueur_Y < table.bas_Table){
-            raquetteJoueur_Y += INCR_RAQUETTE;
+        if (fleche == KeyEvent.VK_UP && raquetteOrdi_Y > HAUT_TABLE){
+            raquetteOrdi_Y -= INCR_RAQUETTE;
+        } else if (fleche == KeyEvent.VK_DOWN && raquetteOrdi_Y < table.bas_Table){
+            raquetteOrdi_Y += INCR_RAQUETTE;
         }
-        table.mouvementRaquetteJoueur(
-                raquetteJoueur_Y);
+        table.mouvementRaquetteOrdi(raquetteOrdi_Y);
 
     }
 
@@ -323,7 +315,8 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
             score_Joueur = 0;
             score_Ordi = 0;
 
-            table.messagesJeu("Scores - Ordinateur : 0  " + " Joueur : 0");
+            table.messagesJeu("Scores - Joueur 1 : 0  " + " Joueur 2 : 0");
+
         }
 
     }
@@ -346,8 +339,8 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         }
     }
 
-    public void rejouer() throws IOException{
-
+    public void rejouer() throws IOException {
+        //Demande à l'utilisateur si il veut commencer une nouvelle partie
         rejouer = new JOptionPane();
         @SuppressWarnings("static-access")
         int choix = rejouer.showConfirmDialog(null, "Voulez vous rejouer ?", "Rejouer", JOptionPane.YES_NO_OPTION);
@@ -359,11 +352,17 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         }
     }
 
-    public void name (){
+    public void name1 (){
 
-        infoNom = new JOptionPane();
-        nom = infoNom.showInputDialog(null, "Veuillez entrer votre prénom", JOptionPane.OK_CANCEL_OPTION);
+        infoNom1 = new JOptionPane();
+        nomJ1 = infoNom1.showInputDialog(null, "Joueur 1, veuillez entrer votre prénom", JOptionPane.OK_CANCEL_OPTION);
 
+    }
+
+    public void name2 (){
+
+        infoNom2 = new JOptionPane();
+        nomJ2 = infoNom2.showInputDialog(null, "Joueur 2, veuillez entrer votre prénom", JOptionPane.OK_CANCEL_OPTION);
         ecritureScores();
 
     }
@@ -371,11 +370,18 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     /**
      * Méthode permettant au joueur de servir en 1 er dans le jeu
      */
-    private void serviceJeu() {
+
+    private void serviceJeu(boolean service) {
 
         balle_Service = true;
-        balle_X = table.place_Raquette - DIAM_BALLE;
-        balle_Y = raquetteJoueur_Y;
+        if(service == true) {
+            balle_X = table.place_Raquette-DIAM_BALLE;
+            balle_Y = raquetteJoueur_Y;
+        }
+        else {
+            balle_X = RAQUETTE_ORDI_X + LARGEUR_RAQUETTE;
+            balle_Y = raquetteOrdi_Y;
+        }
         Thread playWave=new AePlayWave("pong.wav");
         playWave.start();
 
@@ -388,7 +394,10 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
             sens_Y = 1;
         }
         table.positionBalle(balle_X, balle_Y);
-        table.mouvementRaquetteJoueur(raquetteJoueur_Y);
+        if(service == true)
+            table.mouvementRaquetteJoueur(raquetteJoueur_Y);
+        else
+            table.mouvementRaquetteOrdi(raquetteOrdi_Y);
     }
 
 
@@ -402,21 +411,26 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         /* si l'ordinateur atteint le score de 11 points */
         if (score_Ordi == SCORE_GAGNANT) {
 
-            table.messagesJeu("Vous avez perdu " + score_Ordi + ":" + score_Joueur + " !");
-            name();
+            table.messagesJeu("Joueur 1 a gagné " + score_Ordi + ":" + score_Joueur + " !");
+            name1();
+            name2();
             rejouer();
         }
         /* si c'est le joueur qui atteint le score de 11 points */
         else if (score_Joueur == SCORE_GAGNANT) {
 
-            table.messagesJeu("Vous avez gagné " + score_Joueur + ":" + score_Ordi+" !");
-            name();
+            table.messagesJeu("Joueur 2 a gagné " + score_Joueur + ":" + score_Ordi+" !");
+            name1();
+            name2();
             rejouer();
         }
         /* sinon affichage classique des scores */
         else {
 
-            table.messagesJeu("Ordinateur : " + score_Ordi + " Joueur : " + score_Joueur);
+            table.messagesJeu("Joueur 1 : " + score_Ordi + " Joueur 2 : " + score_Joueur);
+            if((score_Joueur+score_Ordi)%2 == 0) {
+                serviceJ1 *= -1;
+            }
 
         }
     }
@@ -447,14 +461,14 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         try {
             monFichier = new FileWriter("scores.txt", true);
             tampon = new BufferedWriter(monFichier);
-                // Ecrit le tableau de chaînes dans scores.txt
-                if(score_Ordi>score_Joueur){
-                    tampon.write(nom + " : Défaite " + String.valueOf(score_Ordi)+" - "+String.valueOf(score_Joueur));
-                }
-                else if (score_Joueur>score_Ordi){
-                    tampon.write(nom + " : Victoire " + String.valueOf(score_Joueur)+" - "+String.valueOf(score_Ordi));
-                }
-                tampon.write("\n");
+            // Ecrit le tableau de chaînes dans scores.txt
+            if(score_Ordi>score_Joueur){
+                tampon.write(nomJ1 + " : Victoire " + String.valueOf(score_Ordi)+" - "+String.valueOf(score_Joueur)+" contre "+nomJ2);
+            }
+            else if (score_Joueur>score_Ordi){
+                tampon.write(nomJ2 + " : Victoire " + String.valueOf(score_Joueur)+" - "+String.valueOf(score_Ordi)+" contre "+nomJ1);
+            }
+            tampon.write("\n");
 
         } catch (IOException exception) {
             exception.printStackTrace();

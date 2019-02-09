@@ -1,6 +1,9 @@
 package jeu_pong;
 
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -18,7 +21,7 @@ import static jeu_pong.Variables_Jeu.BALLE_Y_MIN;
  * Cette classe représente le moteur du jeu, toutes les actions et mouvements y sont gérés
  * (balle, raquette, gestion souris...)
  */
-public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runnable, KeyListener, MouseListener {
+public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runnable, KeyListener{
 
 
 
@@ -66,11 +69,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
      * Méthode appelée lorsqu'un clic de souris à lieu sur l'interface de jeu
      * @param e l'évènement
      */
-    public void mousePressed(MouseEvent e) {
-        if(e.getButton()==MouseEvent.BUTTON1){
-            serviceJeu();
-        }
-    }
+    public void mousePressed(MouseEvent e) {}
 
     /* Ensemble de méthodes implémentées par l'interface MouseListener */
     public void mouseClicked(MouseEvent e) {}

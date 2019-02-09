@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Jeu_Pong:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="34e6c239-30fb-45a2-96a6-0a0c04cda9ef" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/1pong.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/balle.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/balle2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/raquette1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/raquette2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/score.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/scores.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/jeu_pong/Scores.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu_pong/Scores.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trophee.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/trophee.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Jeu_Pong_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Scores.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Jeu_Pong/jeu_pong/Scores.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+            <state relative-caret-position="340">
+              <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -35,19 +35,16 @@
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="456">
-              <caret line="88" column="9" lean-forward="true" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
+              <caret line="88" column="9" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Scores.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -77,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
-              <caret line="324" column="75" selection-start-line="324" selection-start-column="75" selection-end-line="324" selection-end-column="75" />
+              <caret line="70" column="23" lean-forward="true" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="377" column="42" selection-start-line="377" selection-start-column="42" selection-end-line="377" selection-end-column="42" />
+            <state relative-caret-position="238">
+              <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="80" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -110,6 +107,7 @@
       <find>depl</find>
       <find>Moteur</find>
       <find>moteur</find>
+      <find>joueur</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -138,10 +136,10 @@
         <option value="$PROJECT_DIR$/src/jeu_pong/GestionScores.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Variables_Jeu.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java" />
-        <option value="$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java" />
-        <option value="$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Main.java" />
         <option value="$PROJECT_DIR$/src/jeu_pong/Scores.java" />
+        <option value="$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java" />
+        <option value="$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java" />
       </list>
     </option>
   </component>
@@ -196,10 +194,10 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549738055794" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549740623604" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../POOCollections" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
@@ -247,7 +245,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21406959" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21406959" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -256,7 +254,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32872504" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17357911" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17357911" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -353,31 +351,7 @@
     <entry file="file://$PROJECT_DIR$/src/jeu_pong/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
-          <caret line="88" column="9" lean-forward="true" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="377" column="42" selection-start-line="377" selection-start-column="42" selection-end-line="377" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="324" column="75" selection-start-line="324" selection-start-column="75" selection-end-line="324" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+          <caret line="88" column="9" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -393,11 +367,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/jeu_pong/Scores.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+        <state relative-caret-position="119">
+          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_Duo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="77" column="8" selection-start-line="77" selection-start-column="8" selection-end-line="80" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Moteur_PingPong.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="70" column="23" lean-forward="true" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jeu_pong/Table_PingPong.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -407,10 +402,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>Jeu_Pong:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
