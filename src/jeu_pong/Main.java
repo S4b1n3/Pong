@@ -428,6 +428,5 @@ public class Main extends JFrame implements jeu_pong.Variables_Jeu, ActionListen
 
         Menu menu = new Menu();
 
-
     }
 }

@@ -36,7 +36,7 @@ public class Menu extends JFrame implements ActionListener{
     }
 
     private void build() throws IOException {
-        setTitle("Jeu Pong"); //On donne un titre à l'application
+        setTitle("Menu Pong"); //On donne un titre à l'application
         setSize(520, 400); //On donne une taille à notre fenêtre
         setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
 

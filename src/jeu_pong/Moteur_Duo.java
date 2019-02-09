@@ -4,7 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -43,6 +45,11 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
     private JOptionPane infoQuit;
     private JOptionPane rejouer;
     private JOptionPane infoNew;
+    private JOptionPane infoNom1;
+    private JOptionPane infoNom2;
+
+    private String nomJ1;
+    private String nomJ2;
 
 
 
@@ -221,16 +228,24 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
                     if (balle_X > table.balle_x_max) {
 
                         score_Ordi++;
-                        Thread playWave=new AePlayWave("applauses.wav");
-                        playWave.start();
-                        affichageScore();
+                        Thread playWave1=new AePlayWave("applauses.wav");
+                        playWave1.start();
+                        try {
+                            affichageScore();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     else if (balle_X < BALLE_X_MIN) {
 
                         score_Joueur++;
                         Thread playWave=new AePlayWave("applauses2.wav");
                         playWave.start();
-                        affichageScore();
+                        try {
+                            affichageScore();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -325,7 +340,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
         }
     }
 
-    public void rejouer(){
+    public void rejouer() throws IOException {
         //Demande à l'utilisateur si il veut commencer une nouvelle partie
         rejouer = new JOptionPane();
         @SuppressWarnings("static-access")
@@ -334,8 +349,23 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
             nouvellePartie();
         }
         else if (choix == JOptionPane.NO_OPTION){
-            System.exit(0);
+            Scores scores = new Scores();
         }
+    }
+
+    public void name1 (){
+
+        infoNom1 = new JOptionPane();
+        nomJ1 = infoNom1.showInputDialog(null, "Joueur 1, veuillez entrer votre prénom", JOptionPane.OK_CANCEL_OPTION);
+
+    }
+
+    public void name2 (){
+
+        infoNom2 = new JOptionPane();
+        nomJ2 = infoNom2.showInputDialog(null, "Joueur 2, veuillez entrer votre prénom", JOptionPane.OK_CANCEL_OPTION);
+        ecritureScores();
+
     }
 
     /**
@@ -365,7 +395,7 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
     /**
      * Méthode gérant l'affichage du score du jeu
      */
-    private void affichageScore () {
+    private void affichageScore () throws IOException{
 
         balle_Service = false;
 
@@ -373,12 +403,16 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
         if (score_Ordi == SCORE_GAGNANT) {
 
             table.messagesJeu("Joueur 1 a gagné " + score_Ordi + ":" + score_Joueur + " !");
+            name1();
+            name2();
             rejouer();
         }
         /* si c'est le joueur qui atteint le score de 11 points */
         else if (score_Joueur == SCORE_GAGNANT) {
 
             table.messagesJeu("Joueur 2 a gagné " + score_Joueur + ":" + score_Ordi+" !");
+            name1();
+            name2();
             rejouer();
         }
         /* sinon affichage classique des scores */
@@ -406,6 +440,35 @@ public class Moteur_Duo implements Variables_Jeu, MouseMotionListener, Runnable,
         }
     }
 
+    public void ecritureScores() {
 
+        FileWriter monFichier = null;
+        BufferedWriter tampon = null;
+
+
+        try {
+            monFichier = new FileWriter("scores.txt", true);
+            tampon = new BufferedWriter(monFichier);
+            // Ecrit le tableau de chaînes dans scores.txt
+            if(score_Ordi>score_Joueur){
+                tampon.write(nomJ1 + " : Victoire " + String.valueOf(score_Ordi)+" - "+String.valueOf(score_Joueur)+" contre "+nomJ2);
+            }
+            else if (score_Joueur>score_Ordi){
+                tampon.write(nomJ2 + " : Victoire " + String.valueOf(score_Joueur)+" - "+String.valueOf(score_Ordi)+" contre "+nomJ1);
+            }
+            tampon.write("\n");
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } finally {
+            try {
+                tampon.flush();
+                tampon.close();
+                monFichier.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
 
 }

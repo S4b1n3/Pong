@@ -16,6 +16,7 @@ public interface Variables_Jeu {
     int INCR_RAQUETTE = 4;
     int INCR_BALLE_Y = 1;
     int INCR_BALLE_X = 4;
+    int INCR_SCORE = 10;
     int BALLE_Y_MIN = 9;
     int BALLE_X_MIN = 5;
     int BALLE_Y_MAX = 216;

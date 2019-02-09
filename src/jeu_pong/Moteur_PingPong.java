@@ -4,7 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -43,6 +45,9 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     private JOptionPane infoQuit;
     private JOptionPane rejouer;
     private JOptionPane infoNew;
+    private JOptionPane infoNom;
+
+    private String nom;
 
 
 
@@ -124,7 +129,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     /**
      * Instructions réalisées par le thread créé
      */
-    public void run() {
+    public void run(){
 
         boolean rebondBalleX = false;
         boolean rebondBalleY = false;
@@ -243,7 +248,11 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
                         Thread playWave1=new AePlayWave("huee.wav");
                         playWave1.start();
                         score_Ordi++;
-                        affichageScore();
+                        try {
+                            affichageScore();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     else if (balle_X < BALLE_X_MIN) {
 
@@ -251,7 +260,11 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
                         Thread playWave2=new AePlayWave("applauses.wav");
                         playWave2.start();
                         score_Joueur++;
-                        affichageScore();
+                        try {
+                            affichageScore();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -347,8 +360,8 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         }
     }
 
-    public void rejouer(){
-        //Demande à l'utilisateur si il veut commencer une nouvelle partie
+    public void rejouer() throws IOException{
+
         rejouer = new JOptionPane();
         @SuppressWarnings("static-access")
         int choix = rejouer.showConfirmDialog(null, "Voulez vous rejouer ?", "Rejouer", JOptionPane.YES_NO_OPTION);
@@ -356,8 +369,17 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
             nouvellePartie();
         }
         else if (choix == JOptionPane.NO_OPTION){
-            System.exit(0);
+            Scores scores = new Scores();
         }
+    }
+
+    public void name (){
+
+        infoNom = new JOptionPane();
+        nom = infoNom.showInputDialog(null, "Veuillez entrer votre prénom", JOptionPane.OK_CANCEL_OPTION);
+
+        ecritureScores();
+
     }
 
     /**
@@ -387,7 +409,7 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
     /**
      * Méthode gérant l'affichage du score du jeu
      */
-    private void affichageScore () {
+    private void affichageScore () throws IOException{
 
         balle_Service = false;
 
@@ -395,12 +417,14 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         if (score_Ordi == SCORE_GAGNANT) {
 
             table.messagesJeu("Vous avez perdu " + score_Ordi + ":" + score_Joueur + " !");
+            name();
             rejouer();
         }
         /* si c'est le joueur qui atteint le score de 11 points */
         else if (score_Joueur == SCORE_GAGNANT) {
 
             table.messagesJeu("Vous avez gagné " + score_Joueur + ":" + score_Ordi+" !");
+            name();
             rejouer();
         }
         /* sinon affichage classique des scores */
@@ -428,6 +452,35 @@ public class Moteur_PingPong implements Variables_Jeu, MouseMotionListener, Runn
         }
     }
 
+    public void ecritureScores() {
 
+        FileWriter monFichier = null;
+        BufferedWriter tampon = null;
+
+
+        try {
+            monFichier = new FileWriter("scores.txt", true);
+            tampon = new BufferedWriter(monFichier);
+                // Ecrit le tableau de chaînes dans scores.txt
+                if(score_Ordi>score_Joueur){
+                    tampon.write(nom + " : Défaite " + String.valueOf(score_Ordi)+" - "+String.valueOf(score_Joueur));
+                }
+                else if (score_Joueur>score_Ordi){
+                    tampon.write(nom + " : Victoire " + String.valueOf(score_Joueur)+" - "+String.valueOf(score_Ordi));
+                }
+                tampon.write("\n");
+
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        } finally {
+            try {
+                tampon.flush();
+                tampon.close();
+                monFichier.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
 
 }
